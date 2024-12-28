@@ -1,4 +1,4 @@
-package com.gzhe1056.weather;
+package com.gzhe1056;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
