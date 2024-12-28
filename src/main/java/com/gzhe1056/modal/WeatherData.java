@@ -29,6 +29,6 @@ public class WeatherData {
         this.temperature = temperature;
         this.humidity = humidity;
         this.description = description;
-        this.timestamp = LocalDateTime.now(); // Default value for timestamp
+        this.timestamp = LocalDateTime.now();
     }
 }

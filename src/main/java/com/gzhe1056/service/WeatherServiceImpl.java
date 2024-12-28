@@ -6,10 +6,12 @@ import com.gzhe1056.service.WeatherService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class WeatherServiceImpl implements WeatherService {
-
+    private static final Logger logger = LoggerFactory.getLogger(WeatherServiceImpl.class);
     @Value("${openweathermap.api.key}")
     private String apiKey;
 
@@ -22,8 +24,10 @@ public class WeatherServiceImpl implements WeatherService {
     @Override
     public WeatherData getWeather(String city) {
         String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric";
+        logger.info("Calling OpenWeather API with URL: {}", url);
+
         RestTemplate restTemplate = new RestTemplate();
-        com.gzhe1056.response.OpenWeatherResponse response = restTemplate.getForObject(url, com.gzhe1056.response.OpenWeatherResponse.class);
+        OpenWeatherResponse response = restTemplate.getForObject(url, OpenWeatherResponse.class);
 
         if (response != null) {
             WeatherData weatherData = new WeatherData(
