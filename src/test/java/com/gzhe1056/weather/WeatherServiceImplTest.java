@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
 import static org.mockito.Mockito.*;
@@ -28,10 +29,12 @@ class WeatherServiceImplTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    @Value("${openweathermap.api.key}")
+    private String apiKey;
+
     @Test
     void testGetWeather_Success() {
         String city = "London";
-        String apiKey = "API_KEY";
         String url = "http://api.openweathermap.org/data/2.5/weather?q=London&appid=" + apiKey + "&units=metric";
 
         OpenWeatherResponse.Main main = new OpenWeatherResponse.Main();
